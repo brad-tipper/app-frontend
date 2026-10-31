@@ -56,11 +56,14 @@ function isProblem(value: unknown): value is Problem {
 }
 
 /**
- * Result shape of a hey-api SDK call when `throwOnError` is false.
+ * Result shape of a hey-api SDK call when `throwOnError` is false. Deliberately loose:
+ * the generated union (data xor error, plus optional request/response) is assignable to it.
  */
-type SdkResult<TData, TError> =
-  | { data: TData; error?: undefined; response: Response }
-  | { data?: undefined; error: TError; response: Response };
+type SdkResult<TData, TError> = {
+  data?: TData;
+  error?: TError;
+  response?: Response;
+};
 
 /**
  * Turns an SDK result into its data, throwing an ApiError on failure:
@@ -77,8 +80,9 @@ export async function unwrap<TData, TError>(
     if (isApiError(cause)) throw cause;
     throw new ApiError({ code: "network_error", detail: "Unable to reach the server. Check your connection." });
   }
-  if (result.error !== undefined || !result.response.ok) {
-    throw new ApiError(isProblem(result.error) ? result.error : { detail: "Request failed." }, result.response.status);
+  const status = result.response?.status ?? 0;
+  if (result.error !== undefined || (result.response && !result.response.ok)) {
+    throw new ApiError(isProblem(result.error) ? result.error : { detail: "Request failed." }, status);
   }
   return result.data as NonNullable<TData>;
 }
