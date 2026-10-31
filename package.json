@@ -9,8 +9,14 @@
   "exports": {
     ".": "./src/index.ts",
     "./storage": "./src/storage.ts",
-    "./openapi-ts": "./openapi-ts.preset.mjs",
-    "./e2e": "./src/e2e/index.ts"
+    "./openapi-ts": {
+      "types": "./openapi-ts.preset.d.mts",
+      "default": "./openapi-ts.preset.mjs"
+    },
+    "./e2e": {
+      "types": "./src/e2e/index.d.mts",
+      "default": "./src/e2e/index.mjs"
+    }
   },
   "scripts": {
     "typecheck": "tsc --noEmit",
@@ -22,8 +28,12 @@
     "react-native": "*"
   },
   "peerDependenciesMeta": {
-    "expo-secure-store": { "optional": true },
-    "react-native": { "optional": true }
+    "expo-secure-store": {
+      "optional": true
+    },
+    "react-native": {
+      "optional": true
+    }
   },
   "devDependencies": {
     "@types/node": "^24.0.0",
