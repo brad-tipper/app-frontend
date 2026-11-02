@@ -11,4 +11,4 @@ Shared client runtime for the app fleet's Silverstripe APIs (see [app-backend](h
 
 The generated SDK lives in each app (`src/api/generated`) and is committed.
 
-Install in an app: `npm i github:brad-tipper/app-frontend` (private; uses your git credentials).
+Install in an app: `npm i github:brad-tipper/app-frontend` (public).
