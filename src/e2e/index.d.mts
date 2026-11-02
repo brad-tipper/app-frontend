@@ -30,3 +30,30 @@ export function waitForEmail(
 export function firstLink(message: MailMessage): string;
 export function clearMailbox(config: E2eConfig): Promise<void>;
 export function totpCode(secret: string, time?: number): string;
+
+export type RevenueCatSubscription = {
+  /** The preview/local webhook secret from the API's app.yml. */
+  secret: string;
+  entitlement: string;
+  productId: string;
+  /** `PRODUCTION` locally, `SANDBOX` against a preview. */
+  environment?: "PRODUCTION" | "SANDBOX";
+};
+
+export function sendRevenueCatEvent(
+  config: E2eConfig,
+  subscription: RevenueCatSubscription,
+  userId: string,
+  type:
+    | "INITIAL_PURCHASE"
+    | "RENEWAL"
+    | "CANCELLATION"
+    | "UNCANCELLATION"
+    | "BILLING_ISSUE"
+    | "EXPIRATION"
+    | "PRODUCT_CHANGE",
+  extra?: Record<string, unknown>,
+): Promise<{ ok: boolean; processed: boolean; subscriptionStatus?: string; notified?: boolean; outcome?: string }>;
+
+/** Structural subset of Playwright's Page, so this package need not depend on Playwright. */
+export function completeWebCheckout(page: unknown, email?: string): Promise<void>;
