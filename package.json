@@ -9,6 +9,7 @@
   "exports": {
     ".": "./src/index.ts",
     "./storage": "./src/storage.ts",
+    "./tickets": "./src/tickets/index.ts",
     "./openapi-ts": {
       "types": "./openapi-ts.preset.d.mts",
       "default": "./openapi-ts.preset.mjs"
@@ -23,11 +24,15 @@
     "test": "vitest run"
   },
   "peerDependencies": {
+    "@tanstack/react-query": "*",
     "expo-secure-store": "*",
     "react": "*",
     "react-native": "*"
   },
   "peerDependenciesMeta": {
+    "@tanstack/react-query": {
+      "optional": true
+    },
     "expo-secure-store": {
       "optional": true
     },
@@ -36,6 +41,7 @@
     }
   },
   "devDependencies": {
+    "@tanstack/react-query": "^5.105.3",
     "@types/node": "^24.0.0",
     "@types/react": "^19.0.0",
     "typescript": "~6.0.3",
