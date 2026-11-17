@@ -5,7 +5,7 @@ export interface SessionStorage {
   removeItem(key: string): Promise<void>;
 }
 
-/** What is persisted: tokens only. The user comes from `GET /v1/auth/me`. */
+/** What is persisted: tokens only. The user comes from `GET /api/v1/auth/me`. */
 export type StoredSession = {
   accessToken: string;
   refreshToken: string;
@@ -29,7 +29,7 @@ const REFRESH_SKEW_MS = 30_000;
 
 /**
  * Holds the signed-in session, persists it, and refreshes it. Refreshes are
- * single-flight: concurrent 401s share one `/v1/auth/refresh` call, which matters
+ * single-flight: concurrent 401s share one `/api/v1/auth/refresh` call, which matters
  * because the server rotates (and spends) the refresh token.
  */
 export class SessionStore {
@@ -108,7 +108,7 @@ export class SessionStore {
     const current = await this.load();
     if (!current) return null;
     try {
-      const response = await this.fetchImpl(`${this.options.baseUrl}/v1/auth/refresh`, {
+      const response = await this.fetchImpl(`${this.options.baseUrl}/api/v1/auth/refresh`, {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify({ refreshToken: current.refreshToken }),

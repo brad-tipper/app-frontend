@@ -4,7 +4,7 @@ import { createHmac } from "node:crypto";
 
 /** Deletes every user and their data, then creates the fixture users. Keyed by lower-cased email. */
 export async function seedUsers(config, users) {
-  const response = await fetch(`${config.apiUrl}/v1/_e2e/seed`, {
+  const response = await fetch(`${config.apiUrl}/api/v1/_e2e/seed`, {
     method: "POST",
     headers: { "Content-Type": "application/json", "X-E2E-Secret": config.seedSecret },
     body: JSON.stringify({ users }),
@@ -89,7 +89,7 @@ export async function sendRevenueCatEvent(config, subscription, userId, type, ex
     expiration_at_ms: eventClock + 30 * 24 * 3600 * 1000,
     ...extra,
   };
-  const response = await fetch(`${config.apiUrl}/v1/webhooks/revenuecat`, {
+  const response = await fetch(`${config.apiUrl}/api/v1/webhooks/revenuecat`, {
     method: "POST",
     headers: { "Content-Type": "application/json", Authorization: `Bearer ${subscription.secret}` },
     body: JSON.stringify({ event }),
