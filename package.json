@@ -10,6 +10,7 @@
     ".": "./src/index.ts",
     "./storage": "./src/storage.ts",
     "./tickets": "./src/tickets/index.ts",
+    "./contact": "./src/contact/index.ts",
     "./openapi-ts": {
       "types": "./openapi-ts.preset.d.mts",
       "default": "./openapi-ts.preset.mjs"
