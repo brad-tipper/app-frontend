@@ -66,7 +66,7 @@ export const isTicketActive = (status: TicketStatus) => status !== "resolved" &&
 
 /**
  * The part of an app's generated SDK the ticket hooks call. Pass `api` from `~/api/client`
- * (every API built on app-backend has these operations).
+ * (every API built on app-backend has these operations once its openapi.json is regenerated).
  */
 export interface TicketsSdk {
   listTickets(options?: { query?: { status?: "open" | "closed" } }): PromiseLike<any>;
