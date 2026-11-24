@@ -5,3 +5,4 @@ export type { SessionStorage, SessionStoreOptions, StoredSession } from "./api/s
 export { configureApiClient } from "./api/client";
 export type { ApiClientLike, ConfigureApiClientOptions } from "./api/client";
 export { createDefaultStorage } from "./storage";
+export { createApiQueryClient, shouldRetryApiError } from "./query";

@@ -1,4 +1,4 @@
-/** An RFC 9457 problem document as returned by every app-backend endpoint. */
+/** An RFC 9457 problem document as returned by every silverstripe-restful-framework endpoint. */
 export type Problem = {
   type?: string;
   title?: string;
