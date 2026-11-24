@@ -43,7 +43,7 @@
   },
   "devDependencies": {
     "@tanstack/react-query": "^5.108.2",
-    "@types/node": "^24.0.0",
+    "@types/node": "^26.6.6",
     "@types/react": "^19.0.0",
     "typescript": "~6.0.3",
     "vitest": "^4.1.11"
